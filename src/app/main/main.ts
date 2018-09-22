@@ -14,7 +14,8 @@ class MainCtrl {
     currentTheme = "blue";
     menu = [
         { link: "home", title: "Home", icon: "home" },
-        { link: "settings", title: "Settings", icon: "settings" }
+        { link: "settings", title: "Settings", icon: "settings" },
+        { link: "todo", title: "ToDo", icon: "list" }
     ];
 
     toggleNav() {
