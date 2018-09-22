@@ -1,19 +1,19 @@
 import * as _ from "underscore";
-
-interface ITask {
-  title: string;
-  completed: boolean;
-}
+import { ITask, ITasks } from "./todo.interfaces";
+import { TodoService } from "./todo.service";
 
 class TodoCtrl {
-  constructor(private $rootScope: ng.IRootScopeService) {
-   // console.log("todo ctrl ", _);
+  constructor(
+    private $rootScope: ng.IRootScopeService,
+    public TodoService: TodoService,
+    public moment: any
+  ) {
+    this.tasks = this.TodoService.getTasks();
   }
 
   $onInit() {}
   tasks = [];
-  
-
+  task: ITask;
   settings = [
     {
       name: "Сегодня",
@@ -29,30 +29,30 @@ class TodoCtrl {
     }
   ];
 
-  task: ITask;
-
-  addTask() {
-
-    let newTask: ITask = {
+  addTask(keyEvent) {
+    this.TodoService.getCountTodayTasks();
+    let _newTask: ITask = {
       title: this.task.title,
-      completed: false
+      completed: false,
+      createdAt: ""
     };
 
-    if (!newTask.title) {
+    if (!_newTask.title) {
       return;
     }
 
-    this.tasks.push(newTask);
+    this.TodoService.saveTask(_newTask);
     this.task.title = "";
+    this.tasks = this.TodoService.getTasks();
   }
 
-  removeTask(ev) {
-    console.log("Removed ", ev);
-    
+  removeTask(_deleteTask) {
+    this.TodoService.removeTask(_deleteTask);
+    this.tasks = this.TodoService.getTasks();
   }
 }
 
-TodoCtrl.$inject = ["$rootScope"];
+TodoCtrl.$inject = ["$rootScope", "TodoService", "moment"];
 
 export default {
   bindings: {},

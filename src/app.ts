@@ -5,8 +5,10 @@ import * as ngAria from 'angular-aria';
 import * as ngMaterial from 'angular-material';
 import 'angular-material/angular-material.scss';
 import 'hammerjs';
-//import * as underscore from './app/lib/underscore.module';
-
+import * as angularMoment from 'angular-moment';
+import * as moment from 'moment';
+import * as momentTimezone from 'moment-timezone';
+import * as momentLocaleRu from 'moment/locale/ru';
 import * as hmTouchEvents from 'angular-hammer';
 
 import './assets/style.scss';
@@ -17,9 +19,14 @@ import settingsModule from './app/settings/settings.module';
 import homeModule from './app/home/home.module';
 import todoModule from './app/todo/todo.module';
 
-angular.module("app", [ngRoute, ngAnimate, ngAria, ngMaterial, hmTouchEvents,  mainModule, settingsModule, homeModule, todoModule]);
+angular.module("app", [ngRoute, ngAnimate, ngAria, ngMaterial, hmTouchEvents, mainModule, settingsModule, homeModule, todoModule, angularMoment]);
 angular.module("app").config(routes);
-
+angular.module("app").constant('moment', moment);
+angular.module("app").constant('moment-timezone', momentTimezone);
+angular.module("app").constant('ru', momentLocaleRu);
+angular.module("app").run(function(amMoment) {
+	amMoment.changeLocale('ru');
+});
 angular.module("app").config(["$mdThemingProvider", function ($mdThemingProvider) {
     $mdThemingProvider.theme("blue")
         .primaryPalette("blue")
