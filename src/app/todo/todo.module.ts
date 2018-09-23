@@ -10,6 +10,6 @@ export default angular
   .config(routes)
   .component("todo", todoComponent)
   //.service("TodoService", TodoService)
-  .factory("TodoService", (moment) => {
-    return new TodoService(moment);
+  .factory("TodoService", () => {
+    return new TodoService();
   }).name;

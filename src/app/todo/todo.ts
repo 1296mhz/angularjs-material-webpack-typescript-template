@@ -8,11 +8,12 @@ class TodoCtrl {
     public TodoService: TodoService,
     public moment: any
   ) {
-    this.tasks = this.TodoService.getTasks();
+    this.TodoService.tasks = TodoService.tasks;
+    console.log("this.TodoService.tasks ", this.TodoService.tasks)
   }
 
   $onInit() {}
-  tasks = [];
+
   task: ITask;
   settings = [
     {
@@ -29,8 +30,8 @@ class TodoCtrl {
     }
   ];
 
-  addTask(keyEvent) {
-    this.TodoService.getCountTodayTasks();
+  addTask() {
+   
     let _newTask: ITask = {
       title: this.task.title,
       completed: false,
@@ -40,16 +41,25 @@ class TodoCtrl {
     if (!_newTask.title) {
       return;
     }
-
-    this.TodoService.saveTask(_newTask);
+    _newTask.createdAt = new Date();
+    this.TodoService.tasks.push(_newTask);
+    this.TodoService.set();
     this.task.title = "";
-    this.tasks = this.TodoService.getTasks();
   }
 
   removeTask(_deleteTask) {
-    this.TodoService.removeTask(_deleteTask);
-    this.tasks = this.TodoService.getTasks();
+    const i = this.TodoService.tasks.indexOf(_deleteTask);
+    if (i != -1) {
+      this.TodoService.tasks.splice(i, 1);
+    }
+    this.TodoService.set();
   }
+
+  onCompleteTodo(){
+    console.log("markCompleted ", this.TodoService.tasks)
+    this.TodoService.set();
+  }
+
 }
 
 TodoCtrl.$inject = ["$rootScope", "TodoService", "moment"];
