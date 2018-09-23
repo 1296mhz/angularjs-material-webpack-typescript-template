@@ -9,7 +9,6 @@ class TodoCtrl {
     public moment: any
   ) {
     this.TodoService.tasks = TodoService.tasks;
-    console.log("this.TodoService.tasks ", this.TodoService.tasks)
   }
 
   $onInit() {}
