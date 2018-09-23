@@ -1,10 +1,8 @@
 import * as _ from "underscore";
-import { ITask } from "./todo.interfaces";
-import * as moment from "moment";
+import { ITask, ITodoService } from "./todo.interfaces";
 
-export class TodoService {
+export class TodoService implements ITodoService {
   public tasks: ITask[];
-  private moment: any = moment;
   constructor() {
     this.tasks = [];
     this.tasks = this.get();
@@ -24,7 +22,5 @@ export class TodoService {
     this.tasks = JSON.parse(localStorage.getItem(this.STORAGE_ID) || '[]');
     return this.tasks;
   }
+};
 
-}
-
-TodoService.$inject = ["moment"];

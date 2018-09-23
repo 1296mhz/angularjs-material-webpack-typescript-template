@@ -3,13 +3,20 @@ interface ITask {
   completed: boolean;
   createdAt: any;
 }
- interface ITodoStorage {
+
+interface ITodoService {
+  tasks: ITask[];
   get(): ITask[];
-  put(todos: ITask[]);
+  set(): ITask[];
+}
+
+interface ITodoFilters {
+  cropString(): void;
+  countTodayTasks(): void;
 }
 
 interface ITasks {
   tasks: ITask[];
 }
 
-export { ITask, ITasks, ITodoStorage };
+export { ITask, ITasks, ITodoService, ITodoFilters };

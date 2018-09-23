@@ -56,7 +56,6 @@ class TodoCtrl {
   }
 
   onCompleteTodo(){
-    console.log("markCompleted ", this.TodoService.tasks)
     this.TodoService.set();
   }
 

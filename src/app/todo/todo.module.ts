@@ -4,12 +4,14 @@ import routes from "./todo.routes";
 import * as moment from 'moment';
 import todoComponent from "./todo";
 import { TodoService } from "./todo.service";
-
+import { TodoFilter } from "./todo.filter";
 export default angular
   .module("todo", [])
   .config(routes)
   .component("todo", todoComponent)
-  //.service("TodoService", TodoService)
   .factory("TodoService", () => {
     return new TodoService();
-  }).name;
+  })
+  .filter("cropString", TodoFilter.cropString)
+  .filter("countTodayTasks", TodoFilter.countTodayTasks )
+  .name;
