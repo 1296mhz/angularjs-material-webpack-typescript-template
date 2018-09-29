@@ -6,7 +6,7 @@ class TodoCtrl {
   constructor(
     private $rootScope: ng.IRootScopeService,
     public TodoService: TodoService,
-    public moment: any
+    public moment: any,
   ) {
     this.TodoService.tasks = TodoService.tasks;
   }
@@ -14,20 +14,22 @@ class TodoCtrl {
   $onInit() {}
 
   task: ITask;
-  settings = [
+  today =
     {
       name: "Сегодня",
       extraScreen: "today",
       icon: "calendar_today",
       enabled: true
-    },
-    {
-      name: "Следующие 7 дней",
-      extraScreen: "next_seven_days",
-      icon: "calendar_view_day",
-      enabled: true
     }
-  ];
+
+  sevenDays =
+   {
+    name: "Следующие 7 дней",
+    extraScreen: "next_seven_days",
+    icon: "calendar_view_day",
+    enabled: true
+  }
+  
 
   addTask() {
    
@@ -60,7 +62,7 @@ class TodoCtrl {
 
 }
 
-TodoCtrl.$inject = ["$rootScope", "TodoService", "moment"];
+TodoCtrl.$inject = ["$rootScope", "TodoService", "moment", "$mdpTimePicker"];
 
 export default {
   bindings: {},

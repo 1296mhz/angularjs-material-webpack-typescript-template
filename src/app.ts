@@ -3,6 +3,7 @@ import * as ngRoute from 'angular-route';
 import * as ngAnimate from 'angular-animate';
 import * as ngAria from 'angular-aria';
 import * as ngMaterial from 'angular-material';
+import * as ngMessages from 'angular-messages';
 import 'angular-material/angular-material.scss';
 import 'hammerjs';
 import * as angularMoment from 'angular-moment';
@@ -19,7 +20,7 @@ import settingsModule from './app/settings/settings.module';
 import homeModule from './app/home/home.module';
 import todoModule from './app/todo/todo.module';
 
-angular.module("app", [ngRoute, ngAnimate, ngAria, ngMaterial, hmTouchEvents, mainModule, settingsModule, homeModule, todoModule, angularMoment]);
+angular.module("app", [ngRoute, ngAnimate, ngAria, ngMaterial, ngMessages, hmTouchEvents, mainModule, settingsModule, homeModule, todoModule, angularMoment]);
 angular.module("app").config(routes);
 angular.module("app").constant('moment', moment);
 angular.module("app").constant('moment-timezone', momentTimezone);
