@@ -1,36 +1,22 @@
 import * as _ from "underscore";
-import { ITask, ITasks } from "./todo.interfaces";
+import { ITask } from "./todo.interfaces";
 import { TodoService } from "./todo.service";
 
 class TodoCtrl {
   constructor(
     private $rootScope: ng.IRootScopeService,
+    public $scope: ng.IScope,
     public TodoService: TodoService,
     public moment: any,
   ) {
     this.TodoService.tasks = TodoService.tasks;
+  
   }
 
   $onInit() {}
 
   task: ITask;
-  today =
-    {
-      name: "Сегодня",
-      extraScreen: "today",
-      icon: "calendar_today",
-      enabled: true
-    }
-
-  sevenDays =
-   {
-    name: "Следующие 7 дней",
-    extraScreen: "next_seven_days",
-    icon: "calendar_view_day",
-    enabled: true
-  }
-  
-
+ 
   addTask() {
    
     let _newTask: ITask = {
@@ -60,9 +46,15 @@ class TodoCtrl {
     this.TodoService.set();
   }
 
+  keypressHandler(parm){
+    if(parm.key === "Enter"){
+      this.addTask();
+    }
+      
+  }
 }
 
-TodoCtrl.$inject = ["$rootScope", "TodoService", "moment", "$mdpTimePicker"];
+TodoCtrl.$inject = ["$rootScope", "$scope", "TodoService", "moment"];
 
 export default {
   bindings: {},

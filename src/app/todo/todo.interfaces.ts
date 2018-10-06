@@ -15,8 +15,4 @@ interface ITodoFilters {
   countTodayTasks(): void;
 }
 
-interface ITasks {
-  tasks: ITask[];
-}
-
-export { ITask, ITasks, ITodoService, ITodoFilters };
+export { ITask, ITodoService, ITodoFilters };

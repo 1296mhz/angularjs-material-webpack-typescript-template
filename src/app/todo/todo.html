@@ -1,17 +1,6 @@
-<md-content layout="row" layout-xs="column">
-      <div flex="20" flex-xs="100" layout-xs="column" layout-align="end center" layout-wrap>
-            <div layout-align="end center">
-                  <md-list-item ng-click="$ctrl.ev()">
-                        <md-icon class="md-primary">{{today.icon}}</md-icon>
-                        <p> {{ $ctrl.today.name }} <span>{{ $ctrl.TodoService.tasks | countTodayTasks }}</span></p>
-                  </md-list-item>
-                  <md-list-item ng-click="$ctrl.ev()">
-                        <md-icon class="md-primary">{{sevenDays.icon}}</md-icon>
-                        <p> {{ $ctrl.sevenDays.name }} <span>{{ $ctrl.TodoService.tasks | countSevenDayTasks }}</span></p>
-                  </md-list-item>
-            </div>
-      </div>
-      <div flex="80" flex-xs="100" layout-xs="column" layout-align="center center">
+<md-content layout="row" layout-xs="column" layout-align="center center">
+    
+      <div flex="50" flex-xs="100" layout-xs="column" layout-align="center center">
             <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                   <md-card-title>
                         <md-card-title-text>
@@ -30,7 +19,7 @@
                               <form name="formAddTask" ng-show="addTask">
                                     <md-input-container class="md-block">
                                           <label>Задача</label>
-                                          <input ng-model="$ctrl.task.title" name="task">
+                                          <input ng-model="$ctrl.task.title" name="task" ng-keypress="$ctrl.keypressHandler($event)">
                                     </md-input-container>
 
                                     <section layout="row" layout-sm="column" layout-align="left left" layout-wrap>
@@ -39,6 +28,8 @@
                                     </section>
                                     <md-divider></md-divider>
                               </form>
+                              <md-list flex>
+                              <md-subheader class="md-no-sticky" ng-show="$ctrl.TodoService.tasks.length > 0" >Всего задач на сегодня: {{ $ctrl.TodoService.tasks | countTodayTasks }}</md-subheader>
                               <md-list-item ng-repeat="task in $ctrl.TodoService.tasks | orderBy:' -createdAt' track by $index ">
 
                                     <md-checkbox ng-model="task.completed" ng-change='$ctrl.onCompleteTodo(task)'></md-checkbox>
@@ -55,6 +46,7 @@
 
                                     <md-divider></md-divider>
                               </md-list-item>
+                        </md-list>
                         </md-card-content>
                   </div>
             </md-card>

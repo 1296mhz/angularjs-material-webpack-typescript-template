@@ -4,21 +4,20 @@ import * as ngAnimate from 'angular-animate';
 import * as ngAria from 'angular-aria';
 import * as ngMaterial from 'angular-material';
 import * as ngMessages from 'angular-messages';
-import 'angular-material/angular-material.scss';
-import 'hammerjs';
 import * as angularMoment from 'angular-moment';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
 import * as momentLocaleRu from 'moment/locale/ru';
 import * as hmTouchEvents from 'angular-hammer';
-
-import './assets/style.scss';
-
+import 'angular-material/angular-material.scss';
+import 'hammerjs';
 import routes from './app.routes';
 import mainModule from './app/main/main.module';
 import settingsModule from './app/settings/settings.module';
 import homeModule from './app/home/home.module';
 import todoModule from './app/todo/todo.module';
+
+import './assets/style.scss';
 
 angular.module("app", [ngRoute, ngAnimate, ngAria, ngMaterial, ngMessages, hmTouchEvents, mainModule, settingsModule, homeModule, todoModule, angularMoment]);
 angular.module("app").config(routes);
