@@ -39,7 +39,7 @@
                                     </section>
                                     <md-divider></md-divider>
                               </form>
-                              <md-list-item ng-repeat="task in $ctrl.TodoService.tasks track by $index">
+                              <md-list-item ng-repeat="task in $ctrl.TodoService.tasks | orderBy:' -createdAt' track by $index ">
 
                                     <md-checkbox ng-model="task.completed" ng-change='$ctrl.onCompleteTodo(task)'></md-checkbox>
                                     <p ng-class="{completed: task.completed, bold: important, 'has-error': error}"> {{
