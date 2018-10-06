@@ -28,7 +28,8 @@ class TodoCtrl {
     if (!_newTask.title) {
       return;
     }
-    _newTask.createdAt = new Date();
+
+    _newTask.createdAt = Date.now();
     this.TodoService.tasks.push(_newTask);
     this.TodoService.set();
     this.task.title = "";

@@ -1,10 +1,8 @@
 import { ITodoFilters } from "./todo.interfaces";
 
 export class TodoFilter {
-  // static $inject = ["moment"];
 
   constructor(public moment: any) {
-    // this.moment;
   }
 
   static cropString(): any {
@@ -55,5 +53,11 @@ export class TodoFilter {
 
       return countToday;
     };
+  }
+
+  static isoToMilliseconds(): any {
+    return milDate => {
+      return Date.parse(milDate);
+    }
   }
 }

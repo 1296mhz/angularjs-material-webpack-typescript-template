@@ -35,8 +35,7 @@
                                     <md-checkbox ng-model="task.completed" ng-change='$ctrl.onCompleteTodo(task)'></md-checkbox>
                                     <p ng-class="{completed: task.completed, bold: important, 'has-error': error}"> {{
                                           task.title | cropString }} <span class="md-secondary">{{task.createdAt |
-                                                amCalendar:referenceTime:formats}} <md-datepicker ng-model="task.createdAt"
-                                                      md-placeholder="Enter date"></md-datepicker></span>
+                                                amCalendar:referenceTime:formats}}</span>
                                     
                                     </p>
 

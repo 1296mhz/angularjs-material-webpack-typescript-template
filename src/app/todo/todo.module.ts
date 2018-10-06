@@ -18,4 +18,5 @@ export default angular
   .filter("cropString", TodoFilter.cropString)
   .filter("countTodayTasks", TodoFilter.countTodayTasks)
   .filter("countSevenDayTasks", ['moment', TodoFilter.countSevenDaysTasks] )
+  .filter("isoToMilliseconds", TodoFilter.isoToMilliseconds)
   .name;
