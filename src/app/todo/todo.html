@@ -1,5 +1,5 @@
 <md-content layout="row" layout-xs="column" layout-align="center center">
-    
+
       <div flex="50" flex-xs="100" layout-xs="column" layout-align="center center">
             <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                   <md-card-title>
@@ -19,7 +19,8 @@
                               <form name="formAddTask" ng-show="addTask">
                                     <md-input-container class="md-block">
                                           <label>Задача</label>
-                                          <input ng-model="$ctrl.task.title" name="task" ng-keypress="$ctrl.keypressHandler($event)">
+                                          <input ng-model="$ctrl.task.title" name="task" ng-keypress="$ctrl.keypressHandler($event)"
+                                                md-autofocus />
                                     </md-input-container>
 
                                     <section layout="row" layout-sm="column" layout-align="left left" layout-wrap>
@@ -29,23 +30,22 @@
                                     <md-divider></md-divider>
                               </form>
                               <md-list flex>
-                              <md-subheader class="md-no-sticky" ng-show="$ctrl.TodoService.tasks.length > 0" >Всего задач на сегодня: {{ $ctrl.TodoService.tasks | countTodayTasks }}</md-subheader>
-                              <md-list-item ng-repeat="task in $ctrl.TodoService.tasks | orderBy:' -createdAt' track by $index ">
+                                    <md-subheader class="md-no-sticky" ng-show="$ctrl.TodoService.tasks.length > 0">Всего
+                                          задач на сегодня: {{ $ctrl.TodoService.tasks | countTodayTasks }}</md-subheader>
+                                    <md-list-item class="md-2-line md-long-text" ng-repeat="task in $ctrl.TodoService.tasks | orderBy:' -createdAt' track by $index ">
+                                          <md-checkbox ng-model="task.completed" ng-change='$ctrl.onCompleteTodo(task)'></md-checkbox>
+                                          <div class="md-list-item-text" layout="column">
+                                                      <p ng-class="{completed: task.completed, bold: important, 'has-error': error}">
+                                                                  {{ task.title | cropString }} </p>
+                                                <h4>{{task.createdAt | amCalendar:referenceTime:formats}}</h4>
+                                          </div>
+                                          <md-button md-ink-ripple class="md-icon-button" md-no-ink="false" aria-label="Remove Task">
+                                                <md-icon class="md-secondary" aria-label="Remove Task" ng-click="$ctrl.removeTask(task)">delete_forever</md-icon>
+                                          </md-button>
 
-                                    <md-checkbox ng-model="task.completed" ng-change='$ctrl.onCompleteTodo(task)'></md-checkbox>
-                                    <p ng-class="{completed: task.completed, bold: important, 'has-error': error}"> {{
-                                          task.title | cropString }} <span class="md-secondary">{{task.createdAt |
-                                                amCalendar:referenceTime:formats}}</span>
-                                    
-                                    </p>
-
-                                    <md-button md-ink-ripple class="md-icon-button" md-no-ink="false" aria-label="Remove Task">
-                                          <md-icon class="md-secondary" aria-label="Remove Task" ng-click="$ctrl.removeTask(task)">delete_forever</md-icon>
-                                    </md-button>
-
-                                    <md-divider></md-divider>
-                              </md-list-item>
-                        </md-list>
+                                          <md-divider></md-divider>
+                                    </md-list-item>
+                              </md-list>
                         </md-card-content>
                   </div>
             </md-card>

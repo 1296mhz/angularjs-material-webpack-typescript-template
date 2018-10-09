@@ -6,11 +6,12 @@ class TodoCtrl {
   constructor(
     private $rootScope: ng.IRootScopeService,
     public $scope: ng.IScope,
+    public $mdUtil: any,
     public TodoService: TodoService,
     public moment: any,
   ) {
     this.TodoService.tasks = TodoService.tasks;
-  
+
   }
 
   $onInit() {}
@@ -55,7 +56,7 @@ class TodoCtrl {
   }
 }
 
-TodoCtrl.$inject = ["$rootScope", "$scope", "TodoService", "moment"];
+TodoCtrl.$inject = ["$rootScope", "$scope","$mdUtil" ,"TodoService", "moment"];
 
 export default {
   bindings: {},

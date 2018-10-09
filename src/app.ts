@@ -24,9 +24,10 @@ angular.module("app").config(routes);
 angular.module("app").constant('moment', moment);
 angular.module("app").constant('moment-timezone', momentTimezone);
 angular.module("app").constant('ru', momentLocaleRu);
-angular.module("app").run(function(amMoment) {
-	amMoment.changeLocale('ru');
+angular.module("app").constant('app', {
+    title: "MyOffice"
 });
+
 angular.module("app").config(["$mdThemingProvider", function ($mdThemingProvider) {
     $mdThemingProvider.theme("blue")
         .primaryPalette("blue")
@@ -39,7 +40,6 @@ angular.module("app").config(["$mdThemingProvider", function ($mdThemingProvider
     $mdThemingProvider.alwaysWatchTheme(true);
 }]);
 
-//https://docs.angularjs.org/guide/production
 angular.module("app").config(['$compileProvider', function ($compileProvider) {
     $compileProvider.debugInfoEnabled(false);
     $compileProvider.commentDirectivesEnabled(false);
@@ -47,6 +47,3 @@ angular.module("app").config(['$compileProvider', function ($compileProvider) {
 }]);
 
 angular.bootstrap(document, ["app"]);
-
-//https://github.com/vsternbach/angularjs-typescript-webpack
-//http://ryanmullins.github.io/angular-hammer/
