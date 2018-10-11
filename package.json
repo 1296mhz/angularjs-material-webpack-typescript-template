@@ -2,10 +2,11 @@
 	"name": "angularjs-webpack-typescript",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "main.js",
 	"scripts": {
 		"dev": "webpack-dev-server -d --open --content-base src/",
-		"build": "webpack -p"
+		"build": "webpack -p",
+		"start": "electron ."
 	},
 	"author": "ardian shala",
 	"license": "ISC",
